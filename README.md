@@ -123,7 +123,7 @@ Gradients have separate color and alpha stops:
 | `lifetime, speed, size, sizeY, startRotation, angularVelocity` | — | Initial values (scalar values) |
 | `startColor` | white | RGBA, `randomColor` (lerp two), or `gradient` (random sample) |
 | `subEmitters[]` | — | `{ target, trigger: birth\|death, count, inheritVelocity, probability }` |
-| `render` | — | `sprite`, `blend` (additive/alpha/multiply), `mode` (billboard/stretched/horizontal/vertical), `stretchFactor`, `lengthScale`, `applyTint`, `flipbook {rows, cols, mode}` |
+| `render` | — | `sprite`, `blend` (additive/alpha/multiply/screen/subtractive), `mode` (billboard/stretched/horizontal/vertical), `stretchFactor`, `lengthScale`, `applyTint`, `flipbook {rows, cols, mode}` |
 
 ### Modules (`modules.*`, each with `enabled`)
 

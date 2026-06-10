@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "name": "Dark Magic",
+  "looping": true,
+  "emitters": [
+    {
+      "name": "sickly glow",
+      "position": [0, 1.1, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 5,
+      "emission": { "rateOverTime": 2.5 },
+      "shape": { "type": "point" },
+      "lifetime": 1.8,
+      "speed": 0,
+      "size": 3.4,
+      "startColor": [0.35, 0.9, 0.45, 0.55],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.85 }, { "t": 0.5, "v": 1 }, { "t": 1, "v": 0.85 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.4, "alpha": 1 }, { "t": 0.6, "alpha": 1 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/light_02.png", "blend": "screen", "mode": "billboard" }
+    },
+    {
+      "name": "rune ring",
+      "position": [0, 0.03, 0],
+      "duration": 2,
+      "looping": true,
+      "maxParticles": 3,
+      "emission": { "rateOverTime": 1 },
+      "shape": { "type": "point" },
+      "lifetime": 2.1,
+      "speed": 0,
+      "size": 2.8,
+      "angularVelocity": -45,
+      "startColor": [0.4, 1, 0.5, 1],
+      "modules": {
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.3, "alpha": 0.8 }, { "t": 0.7, "alpha": 0.8 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/twirl_02.png", "blend": "additive", "mode": "horizontal" }
+    },
+    {
+      "name": "soul motes",
+      "position": [0, 1.1, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 300,
+      "emission": { "rateOverTime": 90 },
+      "shape": { "type": "sphere", "radius": 2.4, "shell": true },
+      "lifetime": 3,
+      "speed": 0,
+      "size": { "type": "random", "min": 0.07, "max": 0.18 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "startColor": {
+        "type": "gradient",
+        "gradient": {
+          "colorKeys": [
+            { "t": 0, "color": [0.45, 1, 0.55] },
+            { "t": 0.5, "color": [0.8, 1, 0.7] },
+            { "t": 1, "color": [0.25, 0.85, 0.5] }
+          ],
+          "alphaKeys": [{ "t": 0, "alpha": 1 }]
+        }
+      },
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0 }, { "t": 0.2, "v": 1 }, { "t": 1, "v": 0.8 }] } },
+        "attractor": { "strength": 4.5, "radius": 3, "killRadius": 0.16 },
+        "turbulence": { "strength": 0.45, "frequency": 1.2, "scrollSpeed": 0.6 },
+        "drag": { "coefficient": 1.2 }
+      },
+      "render": { "sprite": "../sprites/star_05.png", "blend": "additive", "mode": "billboard" }
+    },
+    {
+      "name": "void smoke",
+      "position": [0, 0.1, 0],
+      "duration": 1.5,
+      "looping": true,
+      "maxParticles": 70,
+      "emission": { "rateOverTime": 20 },
+      "shape": { "type": "circle", "radius": 0.8 },
+      "lifetime": { "type": "random", "min": 1.6, "max": 2.6 },
+      "speed": { "type": "random", "min": 0.05, "max": 0.2 },
+      "size": { "type": "random", "min": 0.7, "max": 1.3 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "angularVelocity": { "type": "random", "min": -40, "max": 40 },
+      "startColor": [0.85, 0.9, 0.85, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.5 }, { "t": 1, "v": 1.15 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.3, "alpha": 0.85 }, { "t": 0.75, "alpha": 0.7 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "velocityOverLife": { "y": { "type": "curve", "keys": [{ "t": 0, "v": 0.35 }, { "t": 1, "v": 0.95 }] } },
+        "vortex": { "strength": 90, "axis": [0, 1, 0] },
+        "turbulence": { "strength": 0.3, "frequency": 1.1, "scrollSpeed": 0.5 }
+      },
+      "render": { "sprite": "../sprites/smoke_05.png", "blend": "subtractive", "mode": "billboard", "applyTint": false }
+    },
+    {
+      "name": "void core",
+      "position": [0, 1.1, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 18,
+      "emission": { "rateOverTime": 9 },
+      "shape": { "type": "sphere", "radius": 0.12 },
+      "lifetime": 1.5,
+      "speed": { "type": "random", "min": 0.02, "max": 0.08 },
+      "size": { "type": "random", "min": 0.8, "max": 1.3 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "angularVelocity": { "type": "random", "min": -25, "max": 25 },
+      "startColor": [0.95, 0.95, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0 }, { "t": 0.35, "v": 1 }, { "t": 1, "v": 0.65 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.35, "alpha": 0.9 }, { "t": 0.7, "alpha": 0.85 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "turbulence": { "strength": 0.18, "frequency": 1.6, "scrollSpeed": 0.9 }
+      },
+      "render": { "sprite": "../sprites/circle_05.png", "blend": "subtractive", "mode": "billboard", "applyTint": false }
+    }
+  ]
+}

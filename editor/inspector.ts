@@ -422,7 +422,7 @@ export function buildInspector(
     em.render = em.render ?? {};
     const r = em.render;
     b.appendChild(row('Sprite', spriteField(r.sprite, (p) => { r.sprite = p; onChange(); })));
-    b.appendChild(row('Blend', selectInput(r.blend ?? 'additive', ['additive', 'alpha', 'multiply'], (v) => { r.blend = v; onChange(); }, 'Blend mode')));
+    b.appendChild(row('Blend', selectInput(r.blend ?? 'additive', ['additive', 'alpha', 'multiply', 'screen', 'subtractive'], (v) => { r.blend = v; onChange(); }, 'Blend mode')));
     b.appendChild(row('Mode', selectInput(r.mode ?? 'billboard', ['billboard', 'stretched', 'horizontal', 'vertical'], (v) => { r.mode = v; onChange(); }, 'Render mode')));
     b.appendChild(row('Stretch factor', numberInput(r.stretchFactor ?? 0.1, (v) => { r.stretchFactor = v; onChange(); }, { step: 0.01, label: 'Stretch factor (stretched mode)' })));
     b.appendChild(row('Length scale', numberInput(r.lengthScale ?? 1, (v) => { r.lengthScale = v; onChange(); }, { step: 0.1, label: 'Length scale (stretched mode)' })));

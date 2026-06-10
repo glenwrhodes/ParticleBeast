@@ -81,7 +81,7 @@ in vec4 v_color;
 uniform sampler2D u_tex;
 uniform vec4 u_tint;
 uniform float u_hueShift; // radians
-uniform int u_blendMode;  // 0 additive, 1 alpha, 2 multiply
+uniform int u_blendMode;  // 0 additive/subtractive, 1 alpha, 2 multiply, 3 screen
 
 out vec4 fragColor;
 
@@ -100,6 +100,10 @@ void main() {
   if (u_blendMode == 2) {
     // Multiply blend: fade toward white so alpha=0 has no effect
     fragColor = vec4(mix(vec3(1.0), col.rgb, col.a), col.a);
+  } else if (u_blendMode == 3) {
+    // Screen blend: premultiply so alpha fades the contribution
+    if (col.a <= 0.003) discard;
+    fragColor = vec4(col.rgb * col.a, col.a);
   } else {
     if (col.a <= 0.003) discard;
     fragColor = col;

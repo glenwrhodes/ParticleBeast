@@ -43,6 +43,11 @@ export const PRESETS: PresetMeta[] = [
     icon: 'sprites/twirl_01.png', tints: ['#ffffff', '#ffd24d', '#5dff9e', '#ff5d8f'], y: 0,
   },
   {
+    id: 'dark-magic', name: 'Dark Magic', file: 'presets/dark-magic.json', looping: true,
+    description: 'Subtractive void smoke devours the light around a sickly green core.',
+    icon: 'sprites/magic_05.png', tints: ['#ffffff', '#8aff7a', '#ff6a5e', '#6ad9ff'], y: 0,
+  },
+  {
     id: 'portal', name: 'Portal', file: 'presets/portal.json', looping: true,
     description: 'Swirling rim, indrafted streaks and escaping wisps.',
     icon: 'sprites/twirl_03.png', tints: ['#ffffff', '#ffaa40', '#48ff96', '#5dc8ff'], y: 0,

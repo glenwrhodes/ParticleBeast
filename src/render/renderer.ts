@@ -16,6 +16,15 @@ const MODE_INDEX: Record<RenderMode, number> = {
   vertical: 3,
 };
 
+/** Fragment shader u_blendMode index. Subtractive shares the additive path. */
+const BLEND_INDEX: Record<BlendMode, number> = {
+  additive: 0,
+  alpha: 1,
+  multiply: 2,
+  screen: 3,
+  subtractive: 0,
+};
+
 interface EmitterGL {
   vao: WebGLVertexArrayObject;
   vbo: WebGLBuffer;
@@ -149,6 +158,8 @@ export class ParticleRenderer {
     const prevBlendDstRGB = gl.getParameter(gl.BLEND_DST_RGB) as number;
     const prevBlendSrcA = gl.getParameter(gl.BLEND_SRC_ALPHA) as number;
     const prevBlendDstA = gl.getParameter(gl.BLEND_DST_ALPHA) as number;
+    const prevBlendEqRGB = gl.getParameter(gl.BLEND_EQUATION_RGB) as number;
+    const prevBlendEqA = gl.getParameter(gl.BLEND_EQUATION_ALPHA) as number;
     const prevDepthTest = gl.isEnabled(gl.DEPTH_TEST);
     const prevDepthMask = gl.getParameter(gl.DEPTH_WRITEMASK) as boolean;
     const prevCull = gl.isEnabled(gl.CULL_FACE);
@@ -176,9 +187,17 @@ export class ParticleRenderer {
 
       if (def.blend !== currentBlend) {
         currentBlend = def.blend;
-        if (def.blend === 'additive') gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
-        else if (def.blend === 'alpha') gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-        else gl.blendFunc(gl.ZERO, gl.SRC_COLOR);
+        if (def.blend === 'subtractive') {
+          // Subtract src from dst (RGB only) so overlapping particles eat light
+          gl.blendEquationSeparate(gl.FUNC_REVERSE_SUBTRACT, gl.FUNC_ADD);
+          gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ZERO, gl.ONE);
+        } else {
+          gl.blendEquation(gl.FUNC_ADD);
+          if (def.blend === 'additive') gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+          else if (def.blend === 'alpha') gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+          else if (def.blend === 'screen') gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_COLOR);
+          else gl.blendFunc(gl.ZERO, gl.SRC_COLOR);
+        }
       }
 
       gl.bindVertexArray(res.vao);
@@ -190,7 +209,7 @@ export class ParticleRenderer {
       gl.uniform2f(u.u_stretch, def.stretchFactor, def.lengthScale);
       gl.uniform3f(u.u_flipbook, def.flipbookCols, def.flipbookRows, def.flipbookRandom ? 1 : 0);
       gl.uniform1f(u.u_scale, call.scale);
-      gl.uniform1i(u.u_blendMode, def.blend === 'multiply' ? 2 : def.blend === 'alpha' ? 1 : 0);
+      gl.uniform1i(u.u_blendMode, BLEND_INDEX[def.blend]);
       if (def.applyTint) {
         gl.uniform4fv(u.u_tint, call.tint);
         gl.uniform1f(u.u_hueShift, call.hueShift);
@@ -211,6 +230,7 @@ export class ParticleRenderer {
     gl.useProgram(prevProgram);
     if (!prevBlend) gl.disable(gl.BLEND);
     gl.blendFuncSeparate(prevBlendSrcRGB, prevBlendDstRGB, prevBlendSrcA, prevBlendDstA);
+    gl.blendEquationSeparate(prevBlendEqRGB, prevBlendEqA);
     if (!prevDepthTest) gl.disable(gl.DEPTH_TEST);
     gl.depthMask(prevDepthMask);
     if (prevCull) gl.enable(gl.CULL_FACE);

@@ -9,7 +9,7 @@ import type { GradientJSON } from './gradient';
 export type Vec3JSON = [number, number, number];
 export type ColorJSON = [number, number, number, number];
 
-export type BlendMode = 'additive' | 'alpha' | 'multiply';
+export type BlendMode = 'additive' | 'alpha' | 'multiply' | 'screen' | 'subtractive';
 export type RenderMode = 'billboard' | 'stretched' | 'horizontal' | 'vertical';
 export type SimulationSpace = 'local' | 'world';
 
