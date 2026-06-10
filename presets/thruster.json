@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "name": "Rocket Thruster",
+  "looping": true,
+  "emitters": [
+    {
+      "name": "core",
+      "rotation": [180, 0, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 120,
+      "emission": { "rateOverTime": 90 },
+      "shape": { "type": "cone", "angle": 4, "radius": 0.09 },
+      "lifetime": { "type": "random", "min": 0.12, "max": 0.2 },
+      "speed": { "type": "random", "min": 7, "max": 9 },
+      "size": { "type": "random", "min": 0.3, "max": 0.5 },
+      "startColor": [1, 1, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 1 }, { "t": 1, "v": 0.35 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [
+              { "t": 0, "color": [0.9, 0.95, 1] },
+              { "t": 0.4, "color": [0.55, 0.75, 1] },
+              { "t": 1, "color": [0.2, 0.4, 1] }
+            ],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 0.7, "alpha": 0.8 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/muzzle_02.png", "blend": "additive", "mode": "stretched", "stretchFactor": 0.05, "lengthScale": 1.6 }
+    },
+    {
+      "name": "flame",
+      "rotation": [180, 0, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 200,
+      "emission": { "rateOverTime": 140 },
+      "shape": { "type": "cone", "angle": 9, "radius": 0.14 },
+      "lifetime": { "type": "random", "min": 0.18, "max": 0.34 },
+      "speed": { "type": "random", "min": 5, "max": 7.5 },
+      "size": { "type": "random", "min": 0.35, "max": 0.6 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "startColor": [1, 1, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.8 }, { "t": 0.4, "v": 1 }, { "t": 1, "v": 0.3 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [
+              { "t": 0, "color": [1, 0.98, 0.9] },
+              { "t": 0.35, "color": [1, 0.75, 0.3] },
+              { "t": 1, "color": [1, 0.3, 0.05] }
+            ],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 0.75, "alpha": 0.85 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/fire_01.png", "blend": "additive", "mode": "billboard" }
+    },
+    {
+      "name": "sparks",
+      "rotation": [180, 0, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 80,
+      "gravity": 0.4,
+      "simulationSpace": "world",
+      "emission": { "rateOverTime": 26 },
+      "shape": { "type": "cone", "angle": 16, "radius": 0.1 },
+      "randomizeDirection": 0.08,
+      "lifetime": { "type": "random", "min": 0.4, "max": 0.9 },
+      "speed": { "type": "random", "min": 8, "max": 12 },
+      "size": { "type": "random", "min": 0.045, "max": 0.09 },
+      "startColor": [1, 0.85, 0.5, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 1 }, { "t": 1, "v": 0.1 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 0.9, 0.6] }, { "t": 1, "color": [1, 0.4, 0.1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 0.8, "alpha": 1 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "drag": { "coefficient": 0.8 }
+      },
+      "render": { "sprite": "../sprites/spark_04.png", "blend": "additive", "mode": "stretched", "stretchFactor": 0.05, "lengthScale": 1.2 }
+    },
+    {
+      "name": "smoke",
+      "rotation": [180, 0, 0],
+      "position": [0, -1.6, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 140,
+      "simulationSpace": "world",
+      "gravity": -0.04,
+      "emission": { "rateOverTime": 38 },
+      "shape": { "type": "cone", "angle": 22, "radius": 0.3 },
+      "lifetime": { "type": "random", "min": 1.2, "max": 2.4 },
+      "speed": { "type": "random", "min": 1.5, "max": 3 },
+      "size": { "type": "random", "min": 0.5, "max": 0.9 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "angularVelocity": { "type": "random", "min": -40, "max": 40 },
+      "startColor": [1, 1, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.5 }, { "t": 1, "v": 2 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [0.65, 0.63, 0.6] }, { "t": 1, "color": [0.3, 0.3, 0.32] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.12, "alpha": 0.4 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "drag": { "coefficient": 1.5 },
+        "turbulence": { "strength": 0.5, "frequency": 0.6, "scrollSpeed": 0.5 }
+      },
+      "render": { "sprite": "../sprites/smoke_06.png", "blend": "alpha", "mode": "billboard", "applyTint": false }
+    }
+  ]
+}

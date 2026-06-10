@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "name": "Tornado",
+  "looping": true,
+  "emitters": [
+    {
+      "name": "funnel",
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 420,
+      "emission": { "rateOverTime": 130 },
+      "shape": { "type": "circle", "radius": 0.3, "shell": true },
+      "lifetime": { "type": "random", "min": 1.8, "max": 2.6 },
+      "speed": { "type": "random", "min": 0.25, "max": 0.55 },
+      "size": { "type": "random", "min": 0.5, "max": 0.95 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "angularVelocity": { "type": "random", "min": -60, "max": 60 },
+      "startColor": [1, 1, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.6 }, { "t": 1, "v": 1.6 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [
+              { "t": 0, "color": [0.62, 0.55, 0.45] },
+              { "t": 0.5, "color": [0.55, 0.5, 0.44] },
+              { "t": 1, "color": [0.42, 0.4, 0.38] }
+            ],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.15, "alpha": 0.75 }, { "t": 0.85, "alpha": 0.6 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "velocityOverLife": { "y": { "type": "curve", "keys": [{ "t": 0, "v": 1.6 }, { "t": 1, "v": 2.6 }] } },
+        "vortex": { "strength": { "type": "curve", "keys": [{ "t": 0, "v": 520 }, { "t": 1, "v": 300 }], "scale": 1 }, "axis": [0, 1, 0], "radialPull": -0.55 },
+        "turbulence": { "strength": 0.4, "frequency": 0.7, "scrollSpeed": 0.6 }
+      },
+      "render": { "sprite": "../sprites/smoke_08.png", "blend": "alpha", "mode": "billboard" }
+    },
+    {
+      "name": "debris",
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 110,
+      "gravity": 0.25,
+      "emission": { "rateOverTime": 30 },
+      "shape": { "type": "circle", "radius": 0.55, "shell": true },
+      "lifetime": { "type": "random", "min": 1, "max": 2 },
+      "speed": { "type": "random", "min": 0.6, "max": 1.4 },
+      "size": { "type": "random", "min": 0.07, "max": 0.18 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "angularVelocity": { "type": "random", "min": -420, "max": 420 },
+      "startColor": [0.75, 0.62, 0.45, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 1 }, { "t": 1, "v": 0.5 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 0.8, "alpha": 0.9 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "velocityOverLife": { "y": { "type": "random", "min": 1.2, "max": 2.8 } },
+        "vortex": { "strength": 480, "axis": [0, 1, 0], "radialPull": -0.3 }
+      },
+      "render": { "sprite": "../sprites/dirt_02.png", "blend": "alpha", "mode": "billboard" }
+    },
+    {
+      "name": "ground dust",
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 70,
+      "emission": { "rateOverTime": 16 },
+      "shape": { "type": "circle", "radius": 0.9, "shell": true },
+      "lifetime": { "type": "random", "min": 1, "max": 1.8 },
+      "speed": { "type": "random", "min": 1, "max": 2 },
+      "size": { "type": "random", "min": 0.6, "max": 1.1 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "startColor": [0.7, 0.6, 0.48, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.5 }, { "t": 1, "v": 1.8 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.2, "alpha": 0.45 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "drag": { "coefficient": 1.6 },
+        "vortex": { "strength": 160, "axis": [0, 1, 0] }
+      },
+      "render": { "sprite": "../sprites/smoke_03.png", "blend": "alpha", "mode": "billboard" }
+    }
+  ]
+}

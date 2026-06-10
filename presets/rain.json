@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "name": "Rain",
+  "looping": true,
+  "emitters": [
+    {
+      "name": "drops",
+      "position": [0, 7.5, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 700,
+      "simulationSpace": "world",
+      "emission": { "rateOverTime": 420 },
+      "shape": { "type": "box", "size": [12, 0.1, 12] },
+      "lifetime": { "type": "random", "min": 0.52, "max": 0.56 },
+      "speed": { "type": "random", "min": -14.5, "max": -13.5 },
+      "size": 0.035,
+      "sizeY": 0.5,
+      "startColor": [0.7, 0.8, 1, 0.55],
+      "subEmitters": [{ "target": "splash", "trigger": "death", "count": 1, "probability": 0.55 }],
+      "render": { "sprite": "../sprites/trace_01.png", "blend": "additive", "mode": "stretched", "stretchFactor": 0.03, "lengthScale": 1 }
+    },
+    {
+      "name": "splash",
+      "isSubEmitter": true,
+      "maxParticles": 500,
+      "simulationSpace": "world",
+      "gravity": 1,
+      "shape": { "type": "cone", "angle": 55, "radius": 0.02 },
+      "lifetime": { "type": "random", "min": 0.18, "max": 0.34 },
+      "speed": { "type": "random", "min": 0.9, "max": 2 },
+      "size": { "type": "random", "min": 0.025, "max": 0.05 },
+      "startColor": [0.75, 0.85, 1, 0.7],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 1 }, { "t": 1, "v": 0.4 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0.8 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/circle_02.png", "blend": "additive", "mode": "billboard" }
+    },
+    {
+      "name": "mist",
+      "position": [0, 0.25, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 40,
+      "simulationSpace": "world",
+      "emission": { "rateOverTime": 7 },
+      "shape": { "type": "box", "size": [10, 0.2, 10] },
+      "lifetime": { "type": "random", "min": 1.5, "max": 2.5 },
+      "speed": 0,
+      "size": { "type": "random", "min": 1, "max": 1.8 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "startColor": [0.75, 0.82, 0.92, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.7 }, { "t": 1, "v": 1.4 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.3, "alpha": 0.14 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/smoke_01.png", "blend": "alpha", "mode": "billboard" }
+    }
+  ]
+}

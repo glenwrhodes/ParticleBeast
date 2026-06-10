@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Downloads — ParticleBeast</title>
+    <link rel="icon" href="/sprites/star_05.png" />
+    <link rel="stylesheet" href="/demo/style.css" />
+    <style>
+      .dl-main { max-width: 880px; margin: 0 auto; padding: 24px 16px; }
+      .dl-section {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 16px;
+      }
+      .dl-section h2 { margin: 0 0 4px; font-size: 1.1rem; }
+      .dl-section p { color: var(--text-dim); font-size: 0.9rem; margin: 4px 0 12px; }
+      .dl-links { display: flex; flex-wrap: wrap; gap: 8px; }
+      .dl-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 0.86rem;
+        font-weight: 600;
+      }
+      .dl-btn:hover { border-color: var(--accent); text-decoration: none; }
+      .dl-btn .size { color: var(--text-dim); font-weight: 400; font-size: 0.76rem; }
+      code.inline {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 1px 6px;
+        font-size: 0.82rem;
+      }
+      pre.snippet {
+        background: #0a0f14;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 14px;
+        overflow-x: auto;
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <img src="/sprites/star_05.png" alt="" class="brand-icon" />
+        <span class="brand-name">Particle<em>Beast</em></span>
+      </div>
+      <nav class="site-nav" aria-label="Site">
+        <a href="/">Demos</a>
+        <a href="/editor.html">Editor</a>
+        <a href="/downloads.html" class="active" aria-current="page">Downloads</a>
+      </nav>
+    </header>
+
+    <main class="dl-main">
+      <section class="dl-section">
+        <h2>Library</h2>
+        <p>Zero-dependency WebGL2 particle engine. One file, ES module or UMD. TypeScript definitions included.</p>
+        <div class="dl-links">
+          <a class="dl-btn" href="/lib/particle-beast.js" download aria-label="Download ES module build">particle-beast.js <span class="size">ESM</span></a>
+          <a class="dl-btn" href="/lib/particle-beast.umd.cjs" download aria-label="Download UMD build">particle-beast.umd.cjs <span class="size">UMD</span></a>
+          <a class="dl-btn" href="/downloads/particle-beast-lib.zip" aria-label="Download library bundle with type definitions">Full bundle + .d.ts <span class="size">zip</span></a>
+        </div>
+      </section>
+
+      <section class="dl-section">
+        <h2>Presets</h2>
+        <p>All effect presets from the <a href="/">demo gallery</a> as ready-to-load JSON. Open any of them in the <a href="/editor.html">editor</a>, tweak, and export your own.</p>
+        <div class="dl-links">
+          <a class="dl-btn" href="/downloads/presets.zip" aria-label="Download all presets as zip">All presets <span class="size">zip</span></a>
+        </div>
+      </section>
+
+      <section class="dl-section">
+        <h2>Sprites</h2>
+        <p>The particle sprite pack used by the presets (white-on-transparent PNGs — tint them any color at runtime).</p>
+        <div class="dl-links">
+          <a class="dl-btn" href="/downloads/sprites.zip" aria-label="Download sprite pack as zip">Sprite pack <span class="size">zip</span></a>
+        </div>
+      </section>
+
+      <section class="dl-section">
+        <h2>Quick start</h2>
+        <p>Drop the library into your WebGL game. ParticleBeast can own its own canvas, or render straight into your existing WebGL2 context (it saves and restores all GL state it touches).</p>
+<pre class="snippet"><code>import { ParticleBeast } from './particle-beast.js';
+
+const beast = new ParticleBeast(myCanvasOrGlContext);
+const explosion = await beast.loadEffect('presets/explosion.json');
+
+// when something blows up:
+beast.spawn(explosion, { position: [x, y, z], tint: '#ff8833' });
+
+// in your game loop:
+beast.update(deltaSeconds);
+beast.render(viewMatrix, projectionMatrix);</code></pre>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>ParticleBeast — embeddable WebGL2 particles.</p>
+    </footer>
+  </body>
+</html>

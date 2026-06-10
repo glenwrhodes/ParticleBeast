@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ParticleBeast Editor</title>
+    <link rel="icon" href="/sprites/star_05.png" />
+    <link rel="stylesheet" href="/demo/style.css" />
+    <link rel="stylesheet" href="/editor/style.css" />
+  </head>
+  <body class="editor-body">
+    <header class="site-header">
+      <div class="brand">
+        <img src="/sprites/star_05.png" alt="" class="brand-icon" />
+        <span class="brand-name">Particle<em>Beast</em> <span class="brand-suffix">editor</span></span>
+      </div>
+      <div class="topbar-center">
+        <input id="effect-name" class="effect-name-input" type="text" value="Untitled Effect" aria-label="Effect name" />
+      </div>
+      <div class="topbar-actions">
+        <button id="btn-new" class="tbtn" aria-label="New effect">New</button>
+        <button id="btn-import" class="tbtn" aria-label="Import effect JSON">Import</button>
+        <button id="btn-export" class="tbtn" aria-label="Export effect JSON">Export</button>
+        <button id="btn-save" class="tbtn tbtn-accent" aria-label="Save effect to browser storage">Save</button>
+        <a href="/" class="tbtn" aria-label="Back to demos">Demos</a>
+      </div>
+    </header>
+
+    <main class="editor-main">
+      <aside class="panel panel-left" aria-label="Presets and emitters">
+        <section class="panel-section">
+          <h2>Presets</h2>
+          <div id="preset-list" class="preset-list"></div>
+        </section>
+        <section class="panel-section">
+          <div class="section-head">
+            <h2>Emitters</h2>
+            <button id="btn-add-emitter" class="mini-btn" aria-label="Add emitter">+ Add</button>
+          </div>
+          <div id="emitter-list" class="emitter-list"></div>
+        </section>
+      </aside>
+
+      <section class="preview-area" aria-label="Live preview">
+        <canvas id="preview" aria-label="Particle effect preview. Drag to orbit, scroll to zoom."></canvas>
+        <div class="transport">
+          <button id="btn-play" class="tbtn" aria-label="Play or pause simulation">Pause</button>
+          <button id="btn-restart" class="tbtn" aria-label="Restart effect">Restart</button>
+          <label class="speed-label">Speed
+            <input id="speed" type="range" min="0.1" max="2" step="0.1" value="1" aria-label="Simulation speed" />
+            <span id="speed-val">1.0x</span>
+          </label>
+          <label class="speed-label">Tint
+            <input id="tint" type="color" value="#ffffff" aria-label="Effect tint color" />
+          </label>
+          <label class="speed-label">BG
+            <input id="bg" type="color" value="#0b1014" aria-label="Background color" />
+          </label>
+          <span id="ed-stats" class="ed-stats">— fps · —</span>
+        </div>
+      </section>
+
+      <aside class="panel panel-right" aria-label="Emitter inspector">
+        <div id="inspector"></div>
+      </aside>
+    </main>
+
+    <div id="modal-root"></div>
+    <script type="module" src="/editor/main.ts"></script>
+  </body>
+</html>

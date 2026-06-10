@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "name": "Magic Teleport",
+  "looping": true,
+  "emitters": [
+    {
+      "name": "floor ring",
+      "position": [0, 0.03, 0],
+      "duration": 2,
+      "looping": true,
+      "maxParticles": 3,
+      "emission": { "rateOverTime": 1 },
+      "shape": { "type": "point" },
+      "lifetime": 2.1,
+      "speed": 0,
+      "size": 3.1,
+      "angularVelocity": 70,
+      "startColor": [0.45, 0.9, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.92 }, { "t": 0.5, "v": 1 }, { "t": 1, "v": 0.92 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.25, "alpha": 0.9 }, { "t": 0.75, "alpha": 0.9 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/twirl_01.png", "blend": "additive", "mode": "horizontal" }
+    },
+    {
+      "name": "counter ring",
+      "position": [0, 0.05, 0],
+      "duration": 2,
+      "looping": true,
+      "maxParticles": 3,
+      "emission": { "rateOverTime": 1 },
+      "shape": { "type": "point" },
+      "lifetime": 2.1,
+      "speed": 0,
+      "size": 2.2,
+      "angularVelocity": -100,
+      "startColor": [0.3, 0.7, 1, 1],
+      "modules": {
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.3, "alpha": 0.75 }, { "t": 0.7, "alpha": 0.75 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/twirl_02.png", "blend": "additive", "mode": "horizontal" }
+    },
+    {
+      "name": "light shafts",
+      "duration": 1.5,
+      "looping": true,
+      "maxParticles": 24,
+      "emission": { "rateOverTime": 9 },
+      "shape": { "type": "circle", "radius": 1.05, "shell": true },
+      "lifetime": { "type": "random", "min": 1, "max": 1.8 },
+      "speed": 0,
+      "size": { "type": "random", "min": 0.14, "max": 0.3 },
+      "sizeY": { "type": "random", "min": 1.6, "max": 2.8 },
+      "startColor": [0.5, 0.9, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.4 }, { "t": 0.4, "v": 1 }, { "t": 1, "v": 0.5 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.35, "alpha": 0.55 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "velocityOverLife": { "y": 0.55 }
+      },
+      "render": { "sprite": "../sprites/trace_01.png", "blend": "additive", "mode": "vertical" }
+    },
+    {
+      "name": "sparkles",
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 160,
+      "emission": { "rateOverTime": 56 },
+      "shape": { "type": "circle", "radius": 0.95 },
+      "lifetime": { "type": "random", "min": 1.1, "max": 2.2 },
+      "speed": { "type": "random", "min": 0.1, "max": 0.4 },
+      "size": { "type": "random", "min": 0.06, "max": 0.17 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "startColor": {
+        "type": "gradient",
+        "gradient": {
+          "colorKeys": [
+            { "t": 0, "color": [0.55, 0.95, 1] },
+            { "t": 0.5, "color": [0.85, 1, 1] },
+            { "t": 1, "color": [0.25, 0.6, 1] }
+          ],
+          "alphaKeys": [{ "t": 0, "alpha": 1 }]
+        }
+      },
+      "modules": {
+        "sizeOverLife": {
+          "curve": { "keys": [{ "t": 0, "v": 0 }, { "t": 0.25, "v": 1 }, { "t": 0.6, "v": 0.5 }, { "t": 0.8, "v": 0.9 }, { "t": 1, "v": 0 }] }
+        },
+        "velocityOverLife": { "y": { "type": "curve", "keys": [{ "t": 0, "v": 0.7 }, { "t": 1, "v": 2.3 }] } },
+        "vortex": { "strength": 130, "axis": [0, 1, 0] },
+        "turbulence": { "strength": 0.35, "frequency": 1.4, "scrollSpeed": 0.8 }
+      },
+      "render": { "sprite": "../sprites/star_05.png", "blend": "additive", "mode": "billboard" }
+    },
+    {
+      "name": "glyphs",
+      "duration": 1.6,
+      "looping": true,
+      "maxParticles": 20,
+      "emission": { "rateOverTime": 5 },
+      "shape": { "type": "circle", "radius": 0.75, "shell": true },
+      "lifetime": { "type": "random", "min": 1.6, "max": 2.4 },
+      "speed": 0,
+      "size": { "type": "random", "min": 0.22, "max": 0.4 },
+      "startColor": [0.6, 0.95, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.3 }, { "t": 0.3, "v": 1 }, { "t": 1, "v": 0.7 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.3, "alpha": 0.95 }, { "t": 0.75, "alpha": 0.8 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "velocityOverLife": { "y": { "type": "curve", "keys": [{ "t": 0, "v": 0.45 }, { "t": 1, "v": 1.2 }] } },
+        "vortex": { "strength": 55, "axis": [0, 1, 0] }
+      },
+      "render": { "sprite": "../sprites/magic_03.png", "blend": "additive", "mode": "billboard" }
+    },
+    {
+      "name": "core glow",
+      "position": [0, 1, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 4,
+      "emission": { "rateOverTime": 2 },
+      "shape": { "type": "point" },
+      "lifetime": 1.6,
+      "speed": 0,
+      "size": 2.4,
+      "sizeY": 3.4,
+      "startColor": [0.35, 0.8, 1, 0.4],
+      "modules": {
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.4, "alpha": 1 }, { "t": 0.6, "alpha": 1 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/light_02.png", "blend": "additive", "mode": "vertical" }
+    }
+  ]
+}

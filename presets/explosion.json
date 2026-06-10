@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "name": "Explosion",
+  "looping": false,
+  "emitters": [
+    {
+      "name": "flash",
+      "duration": 0.2,
+      "looping": false,
+      "maxParticles": 4,
+      "emission": { "rateOverTime": 0, "bursts": [{ "time": 0, "count": 2 }] },
+      "shape": { "type": "point" },
+      "lifetime": 0.18,
+      "speed": 0,
+      "size": { "type": "random", "min": 2.6, "max": 3.4 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "startColor": [1, 0.92, 0.7, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.4 }, { "t": 0.25, "v": 1 }, { "t": 1, "v": 1.15 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 0.9] }, { "t": 1, "color": [1, 0.6, 0.2] }],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/flare_01.png", "blend": "additive", "mode": "billboard" }
+    },
+    {
+      "name": "fireball",
+      "duration": 0.35,
+      "looping": false,
+      "maxParticles": 60,
+      "emission": { "rateOverTime": 0, "bursts": [{ "time": 0, "count": { "type": "random", "min": 22, "max": 30 } }] },
+      "shape": { "type": "sphere", "radius": 0.35 },
+      "lifetime": { "type": "random", "min": 0.45, "max": 0.8 },
+      "speed": { "type": "random", "min": 1.5, "max": 4.5 },
+      "size": { "type": "random", "min": 0.7, "max": 1.4 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "angularVelocity": { "type": "random", "min": -90, "max": 90 },
+      "startColor": [1, 1, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.55 }, { "t": 0.3, "v": 1 }, { "t": 1, "v": 1.25 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [
+              { "t": 0, "color": [1, 0.98, 0.85] },
+              { "t": 0.25, "color": [1, 0.75, 0.25] },
+              { "t": 0.6, "color": [1, 0.35, 0.08] },
+              { "t": 1, "color": [0.45, 0.12, 0.03] }
+            ],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 0.7, "alpha": 0.9 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "drag": { "coefficient": 3.5 },
+        "turbulence": { "strength": 1.6, "frequency": 0.9, "scrollSpeed": 1.2 }
+      },
+      "render": { "sprite": "../sprites/fire_01.png", "blend": "additive", "mode": "billboard", "flipbook": { "rows": 1, "cols": 1 } }
+    },
+    {
+      "name": "sparks",
+      "duration": 0.3,
+      "looping": false,
+      "maxParticles": 90,
+      "gravity": 1,
+      "emission": { "rateOverTime": 0, "bursts": [{ "time": 0, "count": { "type": "random", "min": 35, "max": 50 } }] },
+      "shape": { "type": "sphere", "radius": 0.2, "shell": true },
+      "randomizeDirection": 0.15,
+      "lifetime": { "type": "random", "min": 0.5, "max": 1.1 },
+      "speed": { "type": "random", "min": 5, "max": 11 },
+      "size": { "type": "random", "min": 0.05, "max": 0.12 },
+      "startColor": [1, 0.85, 0.4, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 1 }, { "t": 1, "v": 0.1 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 0.95, 0.75] }, { "t": 0.6, "color": [1, 0.55, 0.15] }, { "t": 1, "color": [0.8, 0.2, 0.05] }],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 0.8, "alpha": 1 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "drag": { "coefficient": 1.2 }
+      },
+      "render": { "sprite": "../sprites/spark_04.png", "blend": "additive", "mode": "stretched", "stretchFactor": 0.06, "lengthScale": 1.4 }
+    },
+    {
+      "name": "smoke",
+      "duration": 0.45,
+      "looping": false,
+      "maxParticles": 40,
+      "gravity": -0.06,
+      "emission": { "rateOverTime": 0, "bursts": [{ "time": 0.05, "count": { "type": "random", "min": 12, "max": 18 } }] },
+      "shape": { "type": "sphere", "radius": 0.5 },
+      "lifetime": { "type": "random", "min": 1.4, "max": 2.4 },
+      "speed": { "type": "random", "min": 0.8, "max": 2.2 },
+      "size": { "type": "random", "min": 1, "max": 1.8 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "angularVelocity": { "type": "random", "min": -35, "max": 35 },
+      "startColor": [1, 1, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.6 }, { "t": 1, "v": 1.7 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [
+              { "t": 0, "color": [0.85, 0.62, 0.38] },
+              { "t": 0.25, "color": [0.45, 0.4, 0.38] },
+              { "t": 1, "color": [0.22, 0.21, 0.2] }
+            ],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.15, "alpha": 0.55 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "drag": { "coefficient": 2.2 },
+        "turbulence": { "strength": 0.5, "frequency": 0.5, "scrollSpeed": 0.4 }
+      },
+      "render": { "sprite": "../sprites/smoke_05.png", "blend": "alpha", "mode": "billboard" }
+    },
+    {
+      "name": "embers",
+      "duration": 0.35,
+      "looping": false,
+      "maxParticles": 50,
+      "gravity": 0.35,
+      "emission": { "rateOverTime": 0, "bursts": [{ "time": 0.02, "count": { "type": "random", "min": 18, "max": 26 } }] },
+      "shape": { "type": "sphere", "radius": 0.3 },
+      "randomizeDirection": 0.4,
+      "lifetime": { "type": "random", "min": 1, "max": 2 },
+      "speed": { "type": "random", "min": 2, "max": 5 },
+      "size": { "type": "random", "min": 0.06, "max": 0.14 },
+      "startColor": [1, 0.7, 0.3, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 1 }, { "t": 1, "v": 0 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 0.8, 0.4] }, { "t": 1, "color": [0.9, 0.25, 0.05] }],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 0.7, "alpha": 0.9 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "drag": { "coefficient": 1.8 },
+        "turbulence": { "strength": 2.2, "frequency": 1.4, "scrollSpeed": 1.5 }
+      },
+      "render": { "sprite": "../sprites/circle_05.png", "blend": "additive", "mode": "billboard" }
+    }
+  ]
+}

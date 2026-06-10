@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "name": "Electric Arcs",
+  "looping": true,
+  "emitters": [
+    {
+      "name": "arcs",
+      "position": [0, 1, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 40,
+      "emission": { "rateOverTime": 34 },
+      "shape": { "type": "sphere", "radius": 0.55 },
+      "lifetime": { "type": "random", "min": 0.05, "max": 0.14 },
+      "speed": 0,
+      "size": { "type": "random", "min": 0.7, "max": 1.5 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "startColor": [0.6, 0.85, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.8 }, { "t": 0.5, "v": 1 }, { "t": 1, "v": 0.85 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }, { "t": 1, "color": [0.5, 0.7, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/spark_06.png", "blend": "additive", "mode": "billboard" }
+    },
+    {
+      "name": "filaments",
+      "position": [0, 1, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 30,
+      "emission": { "rateOverTime": 22 },
+      "shape": { "type": "sphere", "radius": 0.5, "shell": true },
+      "lifetime": { "type": "random", "min": 0.06, "max": 0.16 },
+      "speed": 0,
+      "size": { "type": "random", "min": 0.3, "max": 0.6 },
+      "sizeY": { "type": "random", "min": 1, "max": 2 },
+      "startRotation": { "type": "random", "min": 0, "max": 360 },
+      "startColor": [0.75, 0.92, 1, 1],
+      "modules": {
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/trace_04.png", "blend": "additive", "mode": "billboard" }
+    },
+    {
+      "name": "zaps",
+      "position": [0, 1, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 130,
+      "emission": { "rateOverTime": 60 },
+      "shape": { "type": "sphere", "radius": 0.25 },
+      "randomizeDirection": 0.5,
+      "lifetime": { "type": "random", "min": 0.2, "max": 0.5 },
+      "speed": { "type": "random", "min": 2.5, "max": 6 },
+      "size": { "type": "random", "min": 0.04, "max": 0.1 },
+      "startColor": [0.7, 0.9, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 1 }, { "t": 1, "v": 0.1 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }, { "t": 1, "color": [0.4, 0.6, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 0.7, "alpha": 1 }, { "t": 1, "alpha": 0 }]
+          }
+        },
+        "turbulence": { "strength": 9, "frequency": 2.2, "scrollSpeed": 3 },
+        "drag": { "coefficient": 2 }
+      },
+      "render": { "sprite": "../sprites/spark_04.png", "blend": "additive", "mode": "stretched", "stretchFactor": 0.07, "lengthScale": 1.3 }
+    },
+    {
+      "name": "glow",
+      "position": [0, 1, 0],
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 6,
+      "emission": { "rateOverTime": 4 },
+      "shape": { "type": "point" },
+      "lifetime": 0.8,
+      "speed": 0,
+      "size": { "type": "random", "min": 1.6, "max": 2 },
+      "startColor": [0.35, 0.6, 1, 0.5],
+      "modules": {
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [{ "t": 0, "color": [1, 1, 1] }],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.4, "alpha": 1 }, { "t": 0.6, "alpha": 1 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/light_03.png", "blend": "additive", "mode": "billboard" }
+    }
+  ]
+}
