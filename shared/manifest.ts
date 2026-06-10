@@ -102,4 +102,9 @@ export const PRESETS: PresetMeta[] = [
     description: 'An orbiting disk of stars, dust arms and shooting stars.',
     icon: 'sprites/star_01.png', tints: ['#ffffff', '#ffd9a0', '#9fffe0', '#ff9fcf'], camera: 11, y: 0,
   },
+  {
+    id: 'maelstrom', name: 'Maelstrom', file: 'presets/maelstrom.json', looping: true,
+    description: '~200,000 GPU-simulated motes spiral into a blazing core (transform feedback).',
+    icon: 'sprites/circle_05.png', tints: ['#ffffff', '#7fd1ff', '#8aff7a', '#ff8a5e'], camera: 11, y: 0,
+  },
 ];

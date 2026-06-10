@@ -79,6 +79,7 @@ export function buildInspector(
     b.appendChild(row('Duration s', numberInput(em.duration ?? 5, (v) => { em.duration = v; onChange(); }, { step: 0.1, min: 0.01, label: 'Emitter duration seconds' })));
     b.appendChild(row('Looping', checkbox(em.looping !== false, (v) => { em.looping = v; onChange(); }, 'Emitter looping')));
     b.appendChild(row('Max particles', numberInput(em.maxParticles ?? 1000, (v) => { em.maxParticles = Math.max(1, Math.round(v)); onChange(); }, { step: 50, min: 1, label: 'Max particles' })));
+    b.appendChild(row('GPU simulation', checkbox(em.simulation === 'gpu', (v) => { em.simulation = v ? 'gpu' : undefined; onChange(); }, 'Simulate on the GPU (huge particle counts; no sub-emitters)')));
     b.appendChild(row('Sim space', selectInput(em.simulationSpace ?? 'local', ['local', 'world'], (v) => { em.simulationSpace = v; onChange(); }, 'Simulation space')));
     b.appendChild(row('Gravity ×', numberInput(em.gravity ?? 0, (v) => { em.gravity = v; onChange(); }, { step: 0.1, label: 'Gravity multiplier' })));
     b.appendChild(row('Inherit velocity', numberInput(em.inheritVelocity ?? 0, (v) => { em.inheritVelocity = v; onChange(); }, { step: 0.1, label: 'Inherit velocity fraction' })));

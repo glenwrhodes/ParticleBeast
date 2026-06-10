@@ -111,6 +111,13 @@ export interface RenderJSON {
 export interface EmitterJSON {
   name: string;
   enabled?: boolean;
+  /**
+   * 'gpu' simulates particles on the GPU (WebGL2 transform feedback), supporting
+   * hundreds of thousands of particles. GPU emitters cannot use sub-emitters and
+   * report approximate particle counts; over-life module curves ignore per-particle
+   * randomness (start values keep theirs). Default 'cpu'.
+   */
+  simulation?: 'cpu' | 'gpu';
   /** Sub-emitters do not run on their own timeline; they only spawn via triggers */
   isSubEmitter?: boolean;
   position?: Vec3JSON;

@@ -1,6 +1,7 @@
 /** EffectDefinition (compiled preset) and EffectInstance (a playing copy in the world). */
 
 import { CompiledEmitter, EmitterRuntime, type EmitterUpdateContext } from './emitter';
+import { GpuEmitterRuntime } from './gpuEmitter';
 import { DEG2RAD, mat4Compose } from './math';
 import { autoSeed, Rng } from './rng';
 import type { ColorJSON, EffectJSON, SpawnOptions, Vec3JSON } from './types';
@@ -44,7 +45,7 @@ export function parseColor(c: string | ColorJSON | undefined): Float32Array {
 
 export class EffectInstance {
   readonly definition: EffectDefinition;
-  readonly runtimes: EmitterRuntime[];
+  readonly runtimes: (EmitterRuntime | GpuEmitterRuntime)[];
   readonly tint: Float32Array;
   hueShift = 0; // radians
   autoDispose: boolean;
@@ -76,7 +77,10 @@ export class EffectInstance {
 
     const baseSeed = opts.seed ?? autoSeed();
     const seedRng = new Rng(baseSeed);
-    this.runtimes = definition.emitters.map((e) => new EmitterRuntime(e, (seedRng.next() * 0xffffffff) >>> 0));
+    this.runtimes = definition.emitters.map((e) => {
+      const seed = (seedRng.next() * 0xffffffff) >>> 0;
+      return e.gpu ? new GpuEmitterRuntime(e, seed) : new EmitterRuntime(e, seed);
+    });
 
     this.ctx = {
       effectMatrix: this.effectMatrix,

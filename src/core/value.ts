@@ -133,4 +133,22 @@ export class ScalarValue {
   get isStatic(): boolean {
     return this.mode <= 1;
   }
+
+  /** Largest value this can ever evaluate to (used e.g. for max lifetime estimates). */
+  get maxValue(): number {
+    const lutMax = (lut: Float32Array): number => {
+      let lo = Infinity, hi = -Infinity;
+      for (const v of lut) {
+        if (v < lo) lo = v;
+        if (v > hi) hi = v;
+      }
+      return Math.max(lo * this.scale, hi * this.scale);
+    };
+    switch (this.mode) {
+      case 0: return this.a;
+      case 1: return Math.max(this.a, this.b);
+      case 2: return lutMax(this.lutA!);
+      case 3: return Math.max(lutMax(this.lutA!), lutMax(this.lutB!));
+    }
+  }
 }

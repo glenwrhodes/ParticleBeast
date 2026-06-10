@@ -108,6 +108,7 @@ Gradients have separate color and alpha stops:
 | Field | Default | Description |
 | --- | --- | --- |
 | `name` | — | Unique within the effect (sub-emitter targets reference it) |
+| `simulation` | `cpu` | `gpu` simulates on the GPU via transform feedback (see below) |
 | `isSubEmitter` | `false` | Only spawns via triggers, not on its own timeline |
 | `position` / `rotation` | 0 | Local transform within the effect |
 | `delay`, `duration`, `looping` | 0 / 5 / true | Timeline |
@@ -140,6 +141,15 @@ Gradients have separate color and alpha stops:
 | `vortex` | Swirl around an axis (deg/s) with optional `radialPull` (tornados, portals) |
 | `attractor` | Point force field: attract (+) or repel (−), falloff `radius`, `killRadius` |
 | `orbit` | Rotate particle positions around an axis (galaxies, orbiting sparks) |
+
+### GPU simulation
+
+Set `"simulation": "gpu"` on an emitter to move its entire simulation onto the GPU (WebGL2 transform feedback ping-pong buffers — the CPU never touches per-particle data). This supports hundreds of thousands of particles per emitter at 60fps; the Maelstrom demo runs ~200k. All emission shapes, modules, blend/render modes, tinting and flipbooks work. Caveats:
+
+- No sub-emitters (the emitter falls back to CPU with a warning)
+- `particleCount` is approximate (GPU state is never read back)
+- Over-life module curves ignore per-particle randomness (`random` / `randomCurves` evaluate at their midpoint; start values keep full randomness)
+- `maxParticles` doubles as the spawn ring size — keep it ≳ 1.3 × rate × max lifetime so slots are dead again when the cursor wraps
 
 ### Colorability
 

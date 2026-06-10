@@ -35,6 +35,8 @@ export class CompiledEmitter {
   readonly json: EmitterJSON;
   readonly name: string;
   readonly enabled: boolean;
+  /** Simulate on the GPU via transform feedback */
+  readonly gpu: boolean;
   readonly isSubEmitter: boolean;
   readonly delay: number;
   readonly duration: number;
@@ -194,6 +196,13 @@ export class CompiledEmitter {
       inheritVelocity: s.inheritVelocity ?? 0,
       probability: s.probability ?? 1,
     }));
+
+    let gpu = json.simulation === 'gpu';
+    if (gpu && (this.isSubEmitter || this.subEmitters.length > 0)) {
+      console.warn(`ParticleBeast: emitter "${this.name}" uses sub-emitters, which GPU simulation does not support; falling back to CPU.`);
+      gpu = false;
+    }
+    this.gpu = gpu;
 
     const r = json.render ?? {};
     this.sprite = r.sprite ?? '';
