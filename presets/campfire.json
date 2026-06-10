@@ -4,38 +4,64 @@
   "looping": true,
   "emitters": [
     {
-      "name": "flames",
+      "name": "core",
       "duration": 1,
       "looping": true,
-      "maxParticles": 70,
-      "emission": { "rateOverTime": 32 },
-      "shape": { "type": "circle", "radius": 0.32 },
-      "lifetime": { "type": "random", "min": 0.5, "max": 0.95 },
-      "speed": { "type": "random", "min": 0.7, "max": 1.4 },
-      "size": { "type": "random", "min": 0.45, "max": 0.8 },
-      "sizeY": { "type": "random", "min": 0.7, "max": 1.2 },
+      "maxParticles": 60,
+      "emission": { "rateOverTime": 34 },
+      "shape": { "type": "circle", "radius": 0.18 },
+      "lifetime": { "type": "random", "min": 0.28, "max": 0.5 },
+      "speed": { "type": "random", "min": 0.1, "max": 0.3 },
+      "size": { "type": "random", "min": 0.55, "max": 0.8 },
+      "sizeY": { "type": "random", "min": 0.8, "max": 1.15 },
       "startColor": [1, 1, 1, 1],
       "modules": {
-        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.55 }, { "t": 0.35, "v": 1 }, { "t": 1, "v": 0.25 }] } },
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.55 }, { "t": 0.35, "v": 1 }, { "t": 1, "v": 0.35 }] } },
         "colorOverLife": {
           "gradient": {
             "colorKeys": [
-              { "t": 0, "color": [1, 0.95, 0.75] },
-              { "t": 0.4, "color": [1, 0.65, 0.18] },
-              { "t": 0.8, "color": [1, 0.32, 0.05] },
-              { "t": 1, "color": [0.6, 0.12, 0.02] }
+              { "t": 0, "color": [1, 0.95, 0.7] },
+              { "t": 0.5, "color": [1, 0.68, 0.2] },
+              { "t": 1, "color": [1, 0.4, 0.08] }
             ],
-            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.12, "alpha": 1 }, { "t": 0.8, "alpha": 0.8 }, { "t": 1, "alpha": 0 }]
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.18, "alpha": 0.85 }, { "t": 0.75, "alpha": 0.6 }, { "t": 1, "alpha": 0 }]
+          }
+        }
+      },
+      "render": { "sprite": "../sprites/fire_02.png", "blend": "additive", "mode": "vertical" }
+    },
+    {
+      "name": "licks",
+      "duration": 1,
+      "looping": true,
+      "maxParticles": 60,
+      "emission": { "rateOverTime": 24 },
+      "shape": { "type": "circle", "radius": 0.2 },
+      "lifetime": { "type": "random", "min": 0.45, "max": 0.8 },
+      "speed": { "type": "random", "min": 0.2, "max": 0.45 },
+      "size": { "type": "random", "min": 0.24, "max": 0.42 },
+      "sizeY": { "type": "random", "min": 0.6, "max": 1.05 },
+      "startColor": [1, 1, 1, 1],
+      "modules": {
+        "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.45 }, { "t": 0.3, "v": 1 }, { "t": 0.75, "v": 0.55 }, { "t": 1, "v": 0 }] } },
+        "colorOverLife": {
+          "gradient": {
+            "colorKeys": [
+              { "t": 0, "color": [1, 0.9, 0.55] },
+              { "t": 0.45, "color": [1, 0.6, 0.15] },
+              { "t": 1, "color": [0.85, 0.3, 0.05] }
+            ],
+            "alphaKeys": [{ "t": 0, "alpha": 0 }, { "t": 0.15, "alpha": 1 }, { "t": 0.7, "alpha": 0.75 }, { "t": 1, "alpha": 0 }]
           }
         },
-        "velocityOverLife": { "y": { "type": "curve", "keys": [{ "t": 0, "v": 0.4 }, { "t": 1, "v": 1.6 }] } },
-        "turbulence": { "strength": 0.45, "frequency": 1.6, "scrollSpeed": 1 }
+        "velocityOverLife": { "y": { "type": "curve", "keys": [{ "t": 0, "v": 0.15 }, { "t": 1, "v": 0.7 }] } },
+        "turbulence": { "strength": 0.18, "frequency": 2.2, "scrollSpeed": 1.1 }
       },
       "render": { "sprite": "../sprites/flame_05.png", "blend": "additive", "mode": "vertical" }
     },
     {
       "name": "glow",
-      "position": [0, 0.35, 0],
+      "position": [0, 0.3, 0],
       "duration": 1,
       "looping": true,
       "maxParticles": 6,
@@ -43,8 +69,8 @@
       "shape": { "type": "point" },
       "lifetime": 1.4,
       "speed": 0,
-      "size": { "type": "random", "min": 2.2, "max": 2.6 },
-      "startColor": [1, 0.55, 0.15, 0.33],
+      "size": { "type": "random", "min": 1.3, "max": 1.6 },
+      "startColor": [1, 0.55, 0.15, 0.22],
       "modules": {
         "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 0.85 }, { "t": 0.5, "v": 1 }, { "t": 1, "v": 0.85 }] } },
         "colorOverLife": {
@@ -61,11 +87,11 @@
       "duration": 1,
       "looping": true,
       "maxParticles": 60,
-      "emission": { "rateOverTime": 11 },
-      "shape": { "type": "circle", "radius": 0.3 },
+      "emission": { "rateOverTime": 10 },
+      "shape": { "type": "circle", "radius": 0.24 },
       "lifetime": { "type": "random", "min": 1.2, "max": 2.6 },
-      "speed": { "type": "random", "min": 0.4, "max": 0.9 },
-      "size": { "type": "random", "min": 0.035, "max": 0.085 },
+      "speed": { "type": "random", "min": 0.3, "max": 0.7 },
+      "size": { "type": "random", "min": 0.03, "max": 0.08 },
       "startColor": [1, 0.7, 0.25, 1],
       "modules": {
         "sizeOverLife": { "curve": { "keys": [{ "t": 0, "v": 1 }, { "t": 1, "v": 0 }] } },
@@ -75,14 +101,14 @@
             "alphaKeys": [{ "t": 0, "alpha": 1 }, { "t": 0.7, "alpha": 0.9 }, { "t": 1, "alpha": 0 }]
           }
         },
-        "velocityOverLife": { "y": { "type": "curve", "keys": [{ "t": 0, "v": 0.8 }, { "t": 1, "v": 1.8 }] } },
-        "turbulence": { "strength": 1.1, "frequency": 1.2, "scrollSpeed": 0.9 }
+        "velocityOverLife": { "y": { "type": "curve", "keys": [{ "t": 0, "v": 0.5 }, { "t": 1, "v": 1.5 }] } },
+        "turbulence": { "strength": 0.9, "frequency": 1.3, "scrollSpeed": 0.9 }
       },
       "render": { "sprite": "../sprites/circle_05.png", "blend": "additive", "mode": "billboard" }
     },
     {
       "name": "smoke",
-      "position": [0, 0.9, 0],
+      "position": [0, 0.85, 0],
       "duration": 1,
       "looping": true,
       "maxParticles": 50,

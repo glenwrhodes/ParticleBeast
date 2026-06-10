@@ -35,7 +35,7 @@ export const PRESETS: PresetMeta[] = [
   {
     id: 'campfire', name: 'Campfire', file: 'presets/campfire.json', looping: true,
     description: 'Licking flames, embers carried by turbulence, soft smoke.',
-    icon: 'sprites/flame_05.png', tints: ['#ffffff', '#7fffb2', '#7fb8ff', '#ff7fd4'], y: 0,
+    icon: 'sprites/flame_05.png', tints: ['#ffffff', '#7fffb2', '#7fb8ff', '#ff7fd4'], camera: 5, y: 0,
   },
   {
     id: 'magic-teleport', name: 'Magic Teleport', file: 'presets/magic-teleport.json', looping: true,
