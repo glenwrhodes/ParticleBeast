@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Three.js Addon — ParticleBeast</title>
+    <meta name="description" content="ParticleBeast running inside a three.js scene: effects are Object3Ds you can parent to meshes, move and tint at runtime." />
+    <link rel="icon" href="/sprites/star_05.png" />
+    <link rel="stylesheet" href="/demo/style.css" />
+    <style>
+      #viewport { height: min(64vh, 620px); }
+      .three-info { max-width: 880px; margin: 18px auto 0; }
+      .three-info .dl-section {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        margin-bottom: 16px;
+      }
+      .three-info h2 { margin: 0 0 4px; font-size: 1.1rem; }
+      .three-info p { color: var(--text-dim); font-size: 0.9rem; margin: 4px 0 12px; }
+      pre.snippet {
+        background: #0a0f14;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 14px;
+        overflow-x: auto;
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <img src="/sprites/star_05.png" alt="" class="brand-icon" />
+        <span class="brand-name">Particle<em>Beast</em></span>
+      </div>
+      <nav class="site-nav" aria-label="Site">
+        <a href="/">Demos</a>
+        <a href="/three.html" class="active" aria-current="page">Three.js</a>
+        <a href="/editor.html">Editor</a>
+        <a href="/downloads.html">Downloads</a>
+      </nav>
+    </header>
+
+    <main class="demo-main">
+      <section class="viewport-wrap" aria-label="Three.js scene with ParticleBeast effects">
+        <canvas id="viewport" aria-label="3D scene: a campfire, a portal and an orbiting ship with a thruster, all powered by ParticleBeast. Drag to orbit, scroll to zoom, click the ground to spawn explosions."></canvas>
+        <div class="viewport-hud">
+          <div class="hud-left">
+            <h1>ParticleBeast × three.js</h1>
+            <p>Effects are regular <code>Object3D</code>s: the thruster is parented to the flying ship, the campfire and portal sit in the scene, and clicks raycast explosions onto the ground.</p>
+          </div>
+          <div class="hud-right">
+            <div class="stats" id="stats" aria-live="off">— fps · — particles</div>
+          </div>
+        </div>
+        <p class="hint" aria-hidden="true">drag to orbit · scroll to zoom · click the ground to explode</p>
+      </section>
+
+      <section class="three-info" aria-label="Three.js addon usage">
+        <div class="dl-section">
+          <h2>Using the addon</h2>
+          <p>Import <code>particle-beast/three</code> (or <code>particle-beast-three.js</code> from the <a href="/downloads.html">downloads page</a>) alongside your three.js app. The engine renders straight into your renderer's WebGL2 context and depth buffer, restoring all GL state it touches.</p>
+<pre class="snippet"><code>import { ParticleBeastThree } from 'particle-beast/three';
+
+const particles = new ParticleBeastThree(renderer);          // THREE.WebGLRenderer
+const explosion = await particles.loadEffect('presets/explosion.json');
+
+// effects are Object3Ds — parent them to anything:
+const fx = particles.spawn(explosion, { parent: ship, tint: '#ff8833' });
+fx.position.set(0, 0, -2);
+
+// in your render loop:
+particles.update(clock.getDelta());
+renderer.render(scene, camera);
+particles.render(camera);                                    // after the scene</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>ParticleBeast — embeddable WebGL2 particles. Grab the library on the <a href="/downloads.html">downloads page</a>.</p>
+    </footer>
+
+    <script type="module" src="/demo/three.ts"></script>
+  </body>
+</html>

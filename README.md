@@ -35,6 +35,28 @@ beast.render(viewMatrix, projMatrix);   // column-major Float32Array(16)
 
 One-shot effects auto-dispose when finished (`autoDispose: false` to keep them). Looping instances run until you call `fx.stop()` (stops emitting, particles finish) or `fx.dispose()`.
 
+## Three.js addon
+
+`particle-beast/three` wraps the engine for three.js apps (`three` is an optional peer dependency, never bundled). Effects are regular `Object3D`s: add them to the scene, parent them to meshes, move/rotate/scale them — the simulation follows the world transform, including inherit-velocity and rate-over-distance for moving emitters. Rendering happens in the renderer's own WebGL2 context and depth buffer, with all GL state saved/restored. Live demo: `/three.html`.
+
+```js
+import { ParticleBeastThree } from 'particle-beast/three';
+
+const particles = new ParticleBeastThree(renderer);   // your THREE.WebGLRenderer
+const explosion = await particles.loadEffect('presets/explosion.json');
+
+// spawn as an Object3D — parent it to anything:
+const fx = particles.spawn(explosion, { parent: ship, tint: '#ff8833' });
+fx.position.set(0, 0, -2);
+
+// each frame:
+particles.update(clock.getDelta());
+renderer.render(scene, camera);
+particles.render(camera);     // after the scene, so particles depth-test against it
+```
+
+`ParticleEffect` proxies the full `EffectInstance` API (`play`, `pause`, `stop`, `restart`, `setTint`, `setHueShift`, `playbackSpeed`, `finished`, `particleCount`, `dispose`), and the raw instance is available as `fx.instance`. Finished one-shots are removed from the scene automatically. Spawn options are the same as the core engine (`tint`, `hueShift`, `seed`, `autoDispose`, plus `position`/`rotation`/`scale`, which set the Object3D's local transform).
+
 ### EffectInstance API
 
 | Method | Description |
@@ -140,9 +162,9 @@ npm run lint     # eslint + tsc
 npm run build    # site + library + zips into dist/
 ```
 
-## Deployment (Heroku)
+## Deployment
 
-Pushing to the GitHub repo auto-deploys. Heroku runs `heroku-postbuild` (full Vite build + asset zips) and starts `node server.js` (Express static server, `Procfile`). Nothing needs to be built locally or committed from `dist/`.
+`npm run build` produces a self-contained `dist/` (site + library + asset zips). Serve it with any static host, or run the included Express server with `node server.js` (honors `PORT`).
 
 ## Repo layout
 
@@ -150,12 +172,13 @@ Pushing to the GitHub repo auto-deploys. Heroku runs `heroku-postbuild` (full Vi
 src/        the library (zero dependencies)
   core/     simulation: emitters, modules, shapes, curves, noise
   render/   WebGL2 instanced renderer + texture cache
-demo/       demo gallery app
+  three/    three.js addon (peer dep on three)
+demo/       demo gallery app + three.js addon demo
 editor/     visual editor app
 shared/     orbit camera, grid floor, preset manifest
 presets/    effect JSON presets
 sprites/    particle sprite pack (white-on-transparent PNGs)
-server.js   Heroku static server
+server.js   Express static server
 ```
 
 ## Sprite credits

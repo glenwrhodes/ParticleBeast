@@ -120,6 +120,22 @@ export class EffectInstance {
     this.updateMatrix();
   }
 
+  /**
+   * Drive the effect transform directly from a 4x4 column-major world matrix
+   * (e.g. a three.js `Object3D.matrixWorld`). Overrides position/rotation/scale;
+   * position and uniform scale are extracted from the matrix so inherit-velocity,
+   * rate-over-distance and particle sizing keep working.
+   */
+  setWorldMatrix(m: ArrayLike<number>): void {
+    const e = this.effectMatrix;
+    for (let i = 0; i < 16; i++) e[i] = m[i];
+    this.position[0] = e[12];
+    this.position[1] = e[13];
+    this.position[2] = e[14];
+    this.scale = Math.sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
+    this.ctx.effectScale = this.scale;
+  }
+
   getScale(): number {
     return this.scale;
   }
