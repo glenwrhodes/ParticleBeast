@@ -2,12 +2,12 @@
 
 A zero-dependency **WebGL2 particle engine** for games, with a Unity/Unreal-grade feature set, a browser-based **visual editor**, and **JSON presets** you can load at game time.
 
-**[Live site → particlebeast.herokuapp.com](https://particlebeast.herokuapp.com)**
+**[Live site → particlebeast-a6d4fc5a70e4.herokuapp.com](https://particlebeast-a6d4fc5a70e4.herokuapp.com/)**
 
-- **[Demos](https://particlebeast.herokuapp.com/)** — gallery of effects (explosion, fireworks, thruster, tornado, magic teleport, portal, rain, snow, …)
-- **[Three.js demo](https://particlebeast.herokuapp.com/three.html)** — effects as `Object3D`s in a three.js scene
-- **[Editor](https://particlebeast.herokuapp.com/editor.html)** — full inspector with curve & gradient editors, sprite picker, live preview, import/export JSON
-- **[Downloads](https://particlebeast.herokuapp.com/downloads.html)** — library builds (vanilla + three.js addon), all presets, sprite pack
+- **[Demos](https://particlebeast-a6d4fc5a70e4.herokuapp.com/)** — gallery of effects (explosion, fireworks, thruster, tornado, magic teleport, portal, rain, snow, …)
+- **[Three.js demo](https://particlebeast-a6d4fc5a70e4.herokuapp.com/three.html)** — effects as `Object3D`s in a three.js scene
+- **[Editor](https://particlebeast-a6d4fc5a70e4.herokuapp.com/editor.html)** — full inspector with curve & gradient editors, sprite picker, live preview, import/export JSON
+- **[Downloads](https://particlebeast-a6d4fc5a70e4.herokuapp.com/downloads.html)** — library builds (vanilla + three.js addon), all presets, sprite pack
 
 ## Quick start (embedding in your game)
 
